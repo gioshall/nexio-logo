@@ -18,6 +18,7 @@ body {
 
 .cont {
   text-align: center;
+  padding-bottom: 100px;
 }
 
 h1 {
@@ -66,12 +67,14 @@ h1:after {
   font-size: 14px;
   box-sizing: border-box;
   color: #444;
+  text-align: left;
 }
 
 .logos {
   display: flex;
   text-align: center;
   width: 95%;
+  max-width: 1440px;
   margin: auto;
 }
 
@@ -79,6 +82,21 @@ h1:after {
   width: 25%;
   margin: 10px;
   cursor: pointer; 
+}
+
+@media screen and (max-width: 768px) {
+  .logos {
+    flex-wrap: wrap;
+  }
+  .logos .logo-opt {
+    margin: 2%;
+    width: 46%;
+  }
+}
+@media screen and (max-width: 414px) {
+  .logos .logo-opt {
+    width: 96%;
+  }
 }
 
 .logos .logo-opt input[type="radio"] {
@@ -105,6 +123,11 @@ h1:after {
   transition: 0.3s;
 }
 
+.logos .logo-opt.unselect .opt-block {
+  filter: grayscale(60%);
+  opacity: .5;
+}
+
 .logos .logo-opt img {
   display: block;
   width: 100%;
@@ -123,10 +146,19 @@ h1:after {
 
 .sbm-block {
   background-color: rgba(30,30,30,.8);
-  position: relative;
+  border-top: 1px solid  rgba(0,0,0,.8);
+  position: fixed;
   width: 100%;
-  padding: 30px 0;
-  
+  padding: 20px 0;
+  bottom: -80px;
+  z-index: 5;
+  opacity: 0;
+  transition-delay: 0.2s; 
+  transition: 0.4s ease;
+}
+.sbm-block.show {
+  bottom: 0;
+  opacity: 1;
 }
 
 .submit {
@@ -165,7 +197,7 @@ Please pick up your favorite design
 <div class="logo-block"><img src="img/A.png"></div>
 <span>A</span>
 <div class="des">
-N + X 呈現 nexio 無限的可能及創造力，紅色箭頭方向象徵方向向前進往下一步邁進的意向 based on “next is ours”
+N + X 呈現 nexio 無限的可能及創造力，紅色箭頭方向象徵方向向前進往下一步邁進的意向
 </div>
 <img src="img/logo-A.png">
 </div>
@@ -178,7 +210,7 @@ N + X 呈現 nexio 無限的可能及創造力，紅色箭頭方向象徵方向�
 <div class="logo-block"><img src="img/B.png"></div>
 <span>B</span>
 <div class="des">
-以流動的線條感加入文字設計中，呈現出迅速及未來感，象徵 nexio 具有高度的專業與前瞻性
+多彩銳利的線條同時象徵人才的匯集及市場的擴展，整體也展現出迅速指向未來的意涵
 </div>
 <img src="img/logo-B.png">
 </div>
@@ -191,7 +223,7 @@ N + X 呈現 nexio 無限的可能及創造力，紅色箭頭方向象徵方向�
 <div class="logo-block"><img src="img/C.png"></div>
 <span>C</span>
 <div class="des">
-除了展現公司多方位產業，各種部門互相合作融合向心成為 N 為出發點，象徵 Nexio 創新活力充滿創意
+展現公司多方位產業，各種部門相互合作融合，象徵 Nexio 的創新活力及充滿創意
 </div>
 <img src="img/logo-C.png">
 </div>
@@ -241,7 +273,14 @@ Any suggestions or secrets ?
 </form>
 </div>
 
-
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$('.logo-opt').click(function() {
+  $('.logo-opt').addClass('unselect');
+  $(this).removeClass('unselect');
+  $('.sbm-block').addClass('show');
+});
+</script>
 
 </body>
 </html>
